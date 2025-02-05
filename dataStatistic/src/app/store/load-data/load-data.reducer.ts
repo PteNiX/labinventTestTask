@@ -8,7 +8,7 @@ export const initialLoadDataState: DataState = {
 
 export const dataReducer = createReducer(
   initialLoadDataState,
-  on(uploadDataAction, (state, {data}) => ({
+  on(uploadDataAction, (state: DataState, {data}) => ({
     ...state,
     dataset: data
   }))

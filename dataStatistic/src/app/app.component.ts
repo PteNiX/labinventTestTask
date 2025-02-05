@@ -1,7 +1,5 @@
 import {Component} from '@angular/core';
-import {provideRouter, RouterOutlet} from '@angular/router';
-import {bootstrapApplication} from '@angular/platform-browser';
-import {routes} from './app.routes';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +10,5 @@ import {routes} from './app.routes';
 })
 export class AppComponent {
 }
-
-bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)],
-});
 
 
