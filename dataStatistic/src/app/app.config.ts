@@ -5,11 +5,12 @@ import {provideStore} from '@ngrx/store';
 import {dataReducer} from './store/load-data/load-data.reducer';
 import {provideHttpClient} from '@angular/common/http';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
+import {metaReducers} from './store/meta-reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
-    provideStore({data: dataReducer}),
+    provideStore({data: dataReducer}, {metaReducers}),
     provideHttpClient(),
     provideStoreDevtools({
       maxAge: 25,
