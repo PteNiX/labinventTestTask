@@ -1,3 +1,3 @@
 export interface DataState {
-  dataset: { category: string; value: number }[];
+  uploadedFiles: { filename: string; date: Date; data: { category: string; value: number }[] }[];
 }

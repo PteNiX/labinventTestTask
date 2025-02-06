@@ -3,8 +3,7 @@ import {DataState} from '../../interfaces/data.interface';
 
 export const selectDataState = createFeatureSelector<DataState>('data');
 
-export const selectDataset = createSelector(
+export const selectLoadedFiles = createSelector(
   selectDataState,
-  (state) => state.dataset
+  (state) => state.uploadedFiles
 );
-

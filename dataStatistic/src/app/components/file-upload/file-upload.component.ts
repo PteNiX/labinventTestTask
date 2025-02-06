@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FileUpload} from 'primeng/fileupload';
 import {Store} from '@ngrx/store';
-import {uploadDataAction} from '../../store/load-data/load-data.actions';
+import {loadDataAction} from '../../store/load-data/load-data.actions';
 import {AppState} from '../../interfaces/app.interface';
 
 @Component({
@@ -38,8 +38,13 @@ export class FileUploadComponent {
           this.errorMessage = "Invalid data format";
           return;
         }
+        const fileData = {
+          filename: uploadFile.name,
+          date: new Date(),
+          data: jsonData
+        };
 
-        this.store.dispatch(uploadDataAction({data: jsonData}));
+        this.store.dispatch(loadDataAction({ file: fileData }));
         this.errorMessage = '';
       } catch (error) {
         this.errorMessage = "Error parsing JSON";

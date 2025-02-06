@@ -1,15 +1,20 @@
 import {createReducer, on} from '@ngrx/store';
-import {uploadDataAction} from './load-data.actions';
+import {loadDataAction} from './load-data.actions';
 import {DataState} from '../../interfaces/data.interface';
 
-export const initialLoadDataState: DataState = {
-  dataset: []
+const initialLoadDataState: DataState = {
+  uploadedFiles: []
 };
 
-export const dataReducer = createReducer(
+export const loadDataReducer = createReducer(
   initialLoadDataState,
-  on(uploadDataAction, (state: DataState, {data}) => ({
-    ...state,
-    dataset: data
-  }))
+  on(loadDataAction, (state, {file}) => {
+    const updatedFiles = [...state.uploadedFiles, file];
+
+    if (updatedFiles.length > 5) {
+      updatedFiles.shift();
+    }
+
+    return {...state, uploadedFiles: updatedFiles};
+  })
 );

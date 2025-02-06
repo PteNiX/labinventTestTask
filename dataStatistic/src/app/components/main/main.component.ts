@@ -4,7 +4,7 @@ import {FileUploadComponent} from '../file-upload/file-upload.component';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../interfaces/app.interface';
-import {selectDataset} from '../../store/load-data/load-data.selector';
+import {selectDataState} from '../../store/load-data/load-data.selector';
 
 
 @Component({
@@ -16,7 +16,7 @@ import {selectDataset} from '../../store/load-data/load-data.selector';
 
 })
 export class MainComponent {
-  selectedData = toSignal(this.store.select(selectDataset));
+  selectedData = toSignal(this.store.select(selectDataState));
 
   constructor(private store: Store<AppState>
   ) {
