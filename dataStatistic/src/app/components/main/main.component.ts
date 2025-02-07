@@ -4,24 +4,23 @@ import {FileUploadComponent} from '../file-upload/file-upload.component';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../interfaces/app.interface';
-import {selectDataState} from '../../store/load-data/load-data.selector';
+import {selectLoadedFiles} from '../../store/load-data/load-data.selector';
+import {HistoryTableComponent} from '../history-table/history-table.component';
 
 
 @Component({
   selector: 'app-main',
-  imports: [CommonModule, FileUploadComponent],
+  imports: [CommonModule, FileUploadComponent, HistoryTableComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.less',
   standalone: true,
 
 })
 export class MainComponent {
-  selectedData = toSignal(this.store.select(selectDataState));
+  selectLoadedFiles = toSignal(this.store.select(selectLoadedFiles));
 
   constructor(private store: Store<AppState>
   ) {
   }
 
-  ngOnInit(): void {
-  }
 }

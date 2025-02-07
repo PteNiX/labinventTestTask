@@ -1,6 +1,6 @@
 <app-file-upload></app-file-upload>
+@if ((selectLoadedFiles() ?? []).length > 0) {
+  <app-history-table></app-history-table>
+}
 
-<!--<div *ngFor="let item of selectedData()">-->
-<!--  <p>Category: {{ item.category }}, Value: {{ item.value }}</p>-->
-<!--</div>-->
 
