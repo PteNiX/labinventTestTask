@@ -14,7 +14,7 @@ import * as d3 from 'd3';
 export class BarChartComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription | null = null;
 
-  constructor(private store: Store<{ data: DataState }>, private el: ElementRef) {}
+  constructor(private store: Store<{ data: DataState }>) {}
 
   ngOnInit() {
     this.dataSubscription = this.store.select(selectSelectedFileData).subscribe((data) => {
