@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {FileUpload} from 'primeng/fileupload';
 import {Store} from '@ngrx/store';
-import {loadDataAction} from '../../store/load-data/load-data.actions';
-import {AppState} from '../../interfaces/app.interface';
+import {loadDataAction} from '../../../../store/load-data/load-data.actions';
+import {AppState} from '../../../../interfaces/app.interface';
 
 @Component({
   selector: 'app-file-upload',

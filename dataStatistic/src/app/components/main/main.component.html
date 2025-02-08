@@ -1,6 +1,8 @@
 <app-file-upload></app-file-upload>
+
+<div class="container">
+<app-charts></app-charts>
 @if ((selectLoadedFiles() ?? []).length > 0) {
   <app-history-table></app-history-table>
 }
-
-
+</div>

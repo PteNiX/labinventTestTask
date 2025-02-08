@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {selectLoadedFiles} from '../../store/load-data/load-data.selector';
+import {selectLoadedFiles} from '../../../../store/load-data/load-data.selector';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../interfaces/app.interface';
+import {AppState} from '../../../../interfaces/app.interface';
 import {TableModule} from 'primeng/table';
 import {DatePipe} from '@angular/common';
-import {setSelectedFile} from '../../store/load-data/load-data.actions';
+import {setSelectedFile} from '../../../../store/load-data/load-data.actions';
 
 @Component({
   selector: 'app-history-table',

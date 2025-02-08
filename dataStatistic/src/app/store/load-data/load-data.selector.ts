@@ -7,3 +7,8 @@ export const selectLoadedFiles = createSelector(
   selectDataState,
   (state) => state.uploadedFiles
 );
+
+export const selectSelectedFileData = createSelector(
+  selectDataState,
+  (state) => state.selectedFileData
+);
