@@ -1,9 +1,10 @@
 import {createReducer, on} from '@ngrx/store';
-import {loadDataAction} from './load-data.actions';
+import {loadDataAction, setSelectedFile} from './load-data.actions';
 import {DataState} from '../../interfaces/data.interface';
 
 const initialLoadDataState: DataState = {
-  uploadedFiles: []
+  uploadedFiles: [],
+  selectedFileData: null
 };
 
 export const loadDataReducer = createReducer(
@@ -16,5 +17,9 @@ export const loadDataReducer = createReducer(
     }
 
     return {...state, uploadedFiles: updatedFiles};
-  })
+  }),
+  on(setSelectedFile, (state, { selectedFileData }) => ({
+    ...state,
+    selectedFileData
+  }))
 );

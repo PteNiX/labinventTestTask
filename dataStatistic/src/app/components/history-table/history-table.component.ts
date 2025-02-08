@@ -5,6 +5,7 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../interfaces/app.interface';
 import {TableModule} from 'primeng/table';
 import {DatePipe} from '@angular/common';
+import {setSelectedFile} from '../../store/load-data/load-data.actions';
 
 @Component({
   selector: 'app-history-table',
@@ -17,8 +18,13 @@ import {DatePipe} from '@angular/common';
 })
 export class HistoryTableComponent {
   hoveredIndex: number | null = null;
+
   constructor(private store: Store<AppState>
   ) {
+  }
+
+  selectFile(file: { filename: string; date: Date; data: { category: string; value: number }[] }) {
+    this.store.dispatch(setSelectedFile({ selectedFileData: file.data }));
   }
 
   loadedFiles = toSignal(this.store.select(selectLoadedFiles));

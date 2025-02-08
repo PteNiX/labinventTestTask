@@ -5,3 +5,8 @@ export const loadDataAction = createAction(
   props<{ file: { filename: string; date: Date; data: { category: string; value: number }[] } }>()
 
 );
+
+export const setSelectedFile = createAction(
+  '[File] Set Selected File',
+  props<{ selectedFileData: { category: string; value: number }[] }>()
+);

@@ -1,4 +1,3 @@
-
 <p-table [value]="loadedFiles() ?? []" responsiveLayout="scroll" class="table">
   <ng-template pTemplate="header">
     <tr class="table-header">
@@ -18,7 +17,8 @@
           (mouseleave)="hoveredIndex = null">
         <img [src]="hoveredIndex === index ? 'icons/eye-bold.png' : 'icons/eye.png'"
              alt="eye icon"
-             class="eye-icon">
+             class="eye-icon"
+             (click)="selectFile(file)">
       </td>
     </tr>
   </ng-template>
