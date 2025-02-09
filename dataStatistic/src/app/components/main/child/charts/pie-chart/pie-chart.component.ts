@@ -5,6 +5,7 @@ import {DataState} from '../../../../../interfaces/data.interface';
 import {selectSelectedFileData} from '../../../../../store/load-data/load-data.selector';
 import * as d3 from 'd3';
 import {FilterState} from '../../../../../interfaces/filter.interface';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pie-chart',
@@ -14,6 +15,7 @@ import {FilterState} from '../../../../../interfaces/filter.interface';
 })
 export class PieChartComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription | null = null;
+  // selectSelectedFileData = toSignal(this.store.select(selectSelectedFileData));
   // filteredData: { category: string; value: number }[] = [];
 
   constructor(private store: Store<{ data: DataState, filter: FilterState }>) {
@@ -25,6 +27,9 @@ export class PieChartComponent implements OnInit, OnDestroy {
         this.createChart(data);
       }
     });
+    // if (this.selectSelectedFileData()) {
+    //   this.createChart(this.selectSelectedFileData() ?? []);
+    // }
   }
 
   createChart(data: { category: string; value: number }[]) {
