@@ -26,7 +26,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
   }
 
   createChart(data: { category: string; value: number }[]) {
-    d3.select('#chart').select('svg').remove(); // Удаляем старый график
+    d3.select('#chart').select('svg').remove();
 
     const width = 300;
     const height = 300;
@@ -47,6 +47,17 @@ export class PieChartComponent implements OnInit, OnDestroy {
       .innerRadius(0)
       .outerRadius(radius);
 
+    const tooltip = d3.select('body')
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('visibility', 'hidden')
+      .style('background-color', 'rgba(0, 0, 0, 0.7)')
+      .style('color', '#fff')
+      .style('padding', '5px')
+      .style('border-radius', '5px')
+      .style('font-size', '12px');
+
     const arcs = svg.selectAll('arc')
       .data(pie(data))
       .enter()
@@ -54,7 +65,18 @@ export class PieChartComponent implements OnInit, OnDestroy {
 
     arcs.append('path')
       .attr('d', arc)
-      .attr('fill', (d: any, i: any) => color(String(i)));
+      .attr('fill', (d: any, i: any) => color(String(i)))
+      .on('mouseover', (event, d) => {
+        tooltip.style('visibility', 'visible')
+          .text(`${d.data.category} : ${d.data.value}`);
+      })
+      .on('mousemove', (event) => {
+        tooltip.style('top', (event.pageY + 5) + 'px')
+          .style('left', (event.pageX + 5) + 'px');
+      })
+      .on('mouseout', () => {
+        tooltip.style('visibility', 'hidden');
+      });
 
     arcs.append('text')
       .attr('transform', (d: any) => `translate(${arc.centroid(d)})`)

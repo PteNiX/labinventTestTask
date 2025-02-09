@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {DataState} from '../../../../../interfaces/data.interface';
@@ -14,7 +14,8 @@ import * as d3 from 'd3';
 export class BarChartComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription | null = null;
 
-  constructor(private store: Store<{ data: DataState }>) {}
+  constructor(private store: Store<{ data: DataState }>) {
+  }
 
   ngOnInit() {
     this.dataSubscription = this.store.select(selectSelectedFileData).subscribe((data) => {
@@ -25,11 +26,11 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   createChart(data: { category: string; value: number }[]) {
-    d3.select('#bar-chart').select('svg').remove(); // Удаляем старый график
+    d3.select('#bar-chart').select('svg').remove();
 
     const width = 400;
     const height = 300;
-    const margin = { top: 20, right: 30, bottom: 40, left: 40 };
+    const margin = {top: 20, right: 30, bottom: 40, left: 40};
 
     const svg = d3
       .select('#bar-chart')
@@ -49,6 +50,17 @@ export class BarChartComponent implements OnInit, OnDestroy {
       .nice()
       .range([height - margin.top - margin.bottom, 0]);
 
+    const tooltip = d3.select('body')
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('position', 'absolute')
+      .style('visibility', 'hidden')
+      .style('background-color', 'rgba(0, 0, 0, 0.7)')
+      .style('color', '#fff')
+      .style('padding', '5px')
+      .style('border-radius', '5px')
+      .style('font-size', '12px');
+
     svg.append('g')
       .selectAll('rect')
       .data(data)
@@ -58,9 +70,19 @@ export class BarChartComponent implements OnInit, OnDestroy {
       .attr('y', d => y(d.value))
       .attr('width', x.bandwidth())
       .attr('height', d => height - margin.top - margin.bottom - y(d.value))
-      .attr('fill', 'steelblue');
+      .attr('fill', 'steelblue')
+      .on('mouseover', (event, d) => {
+        tooltip.style('visibility', 'visible')
+          .text(`${d.category} : ${d.value}`);
+      })
+      .on('mousemove', (event) => {
+        tooltip.style('top', (event.pageY + 5) + 'px')
+          .style('left', (event.pageX + 5) + 'px');
+      })
+      .on('mouseout', () => {
+        tooltip.style('visibility', 'hidden');
+      });
 
-    // Добавляем оси
     svg.append('g')
       .attr('transform', `translate(0,${height - margin.top - margin.bottom})`)
       .call(d3.axisBottom(x));
