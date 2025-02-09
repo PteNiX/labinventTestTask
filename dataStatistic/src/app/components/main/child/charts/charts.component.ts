@@ -3,7 +3,6 @@ import {PieChartComponent} from './pie-chart/pie-chart.component';
 import {BarChartComponent} from './bar-chart/bar-chart.component';
 import {FormsModule} from '@angular/forms';
 import {ToggleSwitch} from 'primeng/toggleswitch';
-import {ToggleButton} from 'primeng/togglebutton';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../interfaces/app.interface';
