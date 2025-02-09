@@ -10,15 +10,15 @@ const initialLoadDataState: DataState = {
 export const loadDataReducer = createReducer(
   initialLoadDataState,
   on(loadDataAction, (state, {file}) => {
-    const updatedFiles = [...state.uploadedFiles, file];
+    const updatedFiles = [file, ...state.uploadedFiles];
 
     if (updatedFiles.length > 5) {
-      updatedFiles.shift();
+      updatedFiles.pop();
     }
 
     return {...state, uploadedFiles: updatedFiles};
   }),
-  on(setSelectedFile, (state, { selectedFileData }) => ({
+  on(setSelectedFile, (state, {selectedFileData}) => ({
     ...state,
     selectedFileData
   }))
