@@ -1,11 +1,26 @@
 :host ::ng-deep {
+  .filters {
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+  }
+
   .p-toggleswitch {
     --p-toggleswitch-checked-hover-background: #1976D2;
+
     &.p-toggleswitch-checked {
+
       .p-toggleswitch-slider {
         background-color: #2196F3;
       }
+
     }
+  }
+
+  .p-checkbox-checked .p-checkbox-box {
+    background-color: #2196F3;
+    --p-checkbox-checked-border-color: #2196F3;
+    --p-checkbox-checked-hover-background: #1976D2;
   }
 }
 

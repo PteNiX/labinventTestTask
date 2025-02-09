@@ -1,7 +1,6 @@
-import {ActionReducerMap} from '@ngrx/store';
-import {dataReducer} from './load-data.reducer';
-import {AppState} from '../../interfaces/app.interface';
+import {DataState} from '../../interfaces/data.interface';
 
-export const reducers: ActionReducerMap<AppState> = {
-  data: dataReducer
+export const initialLoadDataState: DataState = {
+  uploadedFiles: [],
+  selectedFileData: null
 };

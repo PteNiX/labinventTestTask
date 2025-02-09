@@ -9,11 +9,12 @@ import {metaReducers} from './store/meta-reducers';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {providePrimeNG} from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import {filterReducer} from './store/filter/filter.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
-    provideStore({data: loadDataReducer}, {metaReducers}),
+    provideStore({data: loadDataReducer, filter: filterReducer}, {metaReducers}),
     provideHttpClient(),
     provideStoreDevtools({
       maxAge: 25,

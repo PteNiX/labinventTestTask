@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 import {DataState} from '../../../../../interfaces/data.interface';
 import {selectSelectedFileData} from '../../../../../store/load-data/load-data.selector';
 import * as d3 from 'd3';
+import {FilterState} from '../../../../../interfaces/filter.interface';
 
 @Component({
   selector: 'app-pie-chart',
@@ -13,8 +14,9 @@ import * as d3 from 'd3';
 })
 export class PieChartComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription | null = null;
+  // filteredData: { category: string; value: number }[] = [];
 
-  constructor(private store: Store<{ data: DataState }>) {
+  constructor(private store: Store<{ data: DataState, filter: FilterState }>) {
   }
 
   ngOnInit() {
