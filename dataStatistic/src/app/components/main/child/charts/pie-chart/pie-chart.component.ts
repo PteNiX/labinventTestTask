@@ -43,7 +43,7 @@ export class PieChartComponent implements OnInit, OnDestroy {
 
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-    const pie = d3.pie<{ category: string; value: number }>().value((d) => d.value);
+    const pie = d3.pie<{ category: string; value: number }>().value((d) => d.value).sort(null);
     const arc = d3.arc<d3.PieArcDatum<{ category: string; value: number }>>()
       .innerRadius(0)
       .outerRadius(radius);
