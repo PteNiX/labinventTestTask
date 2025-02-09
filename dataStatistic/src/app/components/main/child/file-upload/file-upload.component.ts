@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FileUpload} from 'primeng/fileupload';
 import {Store} from '@ngrx/store';
-import {loadDataAction} from '../../../../store/load-data/load-data.actions';
+import {loadDataAction, setSelectedFile} from '../../../../store/load-data/load-data.actions';
 import {AppState} from '../../../../interfaces/app.interface';
 
 @Component({
@@ -23,7 +23,6 @@ export class FileUploadComponent {
   onFileSelected(event: any) {
     const uploadFile: File = event.files[0];
 
-
     if (uploadFile.size > 5 * 1024 * 1024) {
       this.errorMessage = "File exceeds 5MB";
       return;
@@ -44,7 +43,8 @@ export class FileUploadComponent {
           data: jsonData
         };
 
-        this.store.dispatch(loadDataAction({ file: fileData }));
+        this.store.dispatch(loadDataAction({file: fileData}));
+        this.store.dispatch(setSelectedFile({selectedFileData: fileData.data}));
         this.errorMessage = '';
       } catch (error) {
         this.errorMessage = "Error parsing JSON";
