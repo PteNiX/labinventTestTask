@@ -7,12 +7,13 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-file let-index="rowIndex">
-    <tr class="tr">
-      <td class="table-file-name td">
-        <img src="/icons/json.png" alt="json icon" class="json-icon">{{ file.filename }}
+    <tr>
+      <td class="table-file-name">
+        <img src="/icons/json.png" alt="json icon" class="json-icon">
+        <div>{{ file.filename }}</div>
       </td>
-      <td class="td">{{ file.date | date:'short' }}</td>
-      <td class="td"
+      <td class="table-file-date td">{{ file.date | date:'short' }}</td>
+      <td class="td table-file-eye"
           (mouseenter)="hoveredIndex = index"
           (mouseleave)="hoveredIndex = null">
         <img [src]="hoveredIndex === index ? 'icons/eye-bold.png' : 'icons/eye.png'"
