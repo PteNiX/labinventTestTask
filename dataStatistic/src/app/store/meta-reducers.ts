@@ -3,8 +3,7 @@ import {AppState} from '../interfaces/app.interface';
 
 export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
   return (state, action) => {
-    const newState = reducer(state, action);
-    return newState;
+    return reducer(state, action);
   };
 }
 
