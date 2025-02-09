@@ -7,21 +7,21 @@
                 [binary]="true"
                 (onChange)="toggleSort($event)">
     </p-checkbox>
-    <label for="sortAlphabetically">Sort by A-Z</label>
+    <label for="sortAlphabetically">Sort A-Z</label>
 
     <p-checkbox id="hideZeroValues"
                 [(ngModel)]="hideZeroValues"
                 [binary]="true"
                 (onChange)="toggleHideZero($event)">
     </p-checkbox>
-    <label for="hideZeroValues">Hide zero values</label>
+    <label for="hideZeroValues"> V > 0</label>
 
     <p-checkbox id="minValue"
                 [(ngModel)]="minValueFilterEnabled"
                 [binary]="true"
                 (onChange)="toggleMinValue($event)">
     </p-checkbox>
-    <label for="minValue">Hide Min Value</label>
+    <label for="minValue"> V > 0.1 %</label>
   </div>
 }
 

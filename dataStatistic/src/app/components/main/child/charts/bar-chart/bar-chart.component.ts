@@ -2,9 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {DataState} from '../../../../../interfaces/data.interface';
-import {selectSelectedFileData} from '../../../../../store/load-data/load-data.selector';
 import * as d3 from 'd3';
 import {FilterState} from '../../../../../interfaces/filter.interface';
+import {selectFilteredData} from '../../../../../store/filter/filter.selector';
 
 @Component({
   selector: 'app-bar-chart',
@@ -19,7 +19,7 @@ export class BarChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.dataSubscription = this.store.select(selectSelectedFileData).subscribe((data) => {
+    this.dataSubscription = this.store.select(selectFilteredData).subscribe((data) => {
       if (data) {
         this.createChart(data);
       }

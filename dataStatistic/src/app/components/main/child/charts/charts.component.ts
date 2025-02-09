@@ -34,16 +34,15 @@ export class ChartsComponent {
   }
 
   toggleSort($event: any) {
-    this.store.dispatch(setSortAlphabetically({sortAlphabetically: $event}));
+    this.store.dispatch(setSortAlphabetically({sortAlphabetically: $event.checked}));
   }
 
   toggleHideZero($event: any) {
-
-    this.store.dispatch(setHideZeroValues({hideZeroValues: $event}));
+    this.store.dispatch(setHideZeroValues({hideZeroValues: $event.checked}));
   }
 
   toggleMinValue($event: any) {
-    this.store.dispatch(setMinValue({minValue: $event}));
+    this.store.dispatch(setMinValue({minValue: $event.checked}));
   }
 
 }
