@@ -3,4 +3,6 @@
 } @else {
   <app-bar-chart></app-bar-chart>
 }
-<p-toggleswitch [(ngModel)]="checked" />
+@if (selectSelectedFileData() !== null){
+<p-toggleswitch [(ngModel)]="checked" ></p-toggleswitch>
+}

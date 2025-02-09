@@ -3,6 +3,11 @@ import {PieChartComponent} from './pie-chart/pie-chart.component';
 import {BarChartComponent} from './bar-chart/bar-chart.component';
 import {FormsModule} from '@angular/forms';
 import {ToggleSwitch} from 'primeng/toggleswitch';
+import {ToggleButton} from 'primeng/togglebutton';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../../interfaces/app.interface';
+import {selectSelectedFileData} from '../../../../store/load-data/load-data.selector';
 
 @Component({
   selector: 'app-charts',
@@ -17,4 +22,10 @@ import {ToggleSwitch} from 'primeng/toggleswitch';
 })
 export class ChartsComponent {
   checked: boolean = false;
+  selectSelectedFileData = toSignal(this.store.select(selectSelectedFileData));
+
+  constructor(private store: Store<AppState>
+  ) {
+  }
+
 }

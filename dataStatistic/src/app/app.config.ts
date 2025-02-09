@@ -6,6 +6,9 @@ import {loadDataReducer} from './store/load-data/load-data.reducer';
 import {provideHttpClient} from '@angular/common/http';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
 import {metaReducers} from './store/meta-reducers';
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
+import {providePrimeNG} from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}),
@@ -16,6 +19,12 @@ export const appConfig: ApplicationConfig = {
       maxAge: 25,
       logOnly: !isDevMode(),
       autoPause: true,
+    }),
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
     })
   ]
 };
