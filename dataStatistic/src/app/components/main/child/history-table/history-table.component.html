@@ -1,0 +1,26 @@
+<p-table [value]="loadedFiles() ?? []" responsiveLayout="scroll" class="table">
+  <ng-template pTemplate="header">
+    <tr class="table-header">
+      <th class="th">Name</th>
+      <th class="th">Upload date</th>
+      <th class="th">Action</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-file let-index="rowIndex">
+    <tr>
+      <td class="table-file-name">
+        <img src="icons/json.png" alt="json icon" class="json-icon">
+        <div>{{ file.filename }}</div>
+      </td>
+      <td class="table-file-date td">{{ file.date | date:'short' }}</td>
+      <td class="td table-file-eye"
+          (mouseenter)="hoveredIndex = index"
+          (mouseleave)="hoveredIndex = null">
+        <img [src]="hoveredIndex === index ? 'icons/eye-bold.png' : 'icons/eye.png'"
+             alt="eye icon"
+             class="eye-icon"
+             (click)="selectFile(file)">
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

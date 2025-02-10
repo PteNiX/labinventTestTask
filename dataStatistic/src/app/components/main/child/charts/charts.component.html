@@ -1,0 +1,32 @@
+@if (selectSelectedFileData() !== null) {
+
+  <div class="filters">
+    <p-toggleswitch [(ngModel)]="checked"></p-toggleswitch>
+    <p-checkbox id="sortAlphabetically"
+                [(ngModel)]="sortAlphabetically"
+                [binary]="true"
+                (onChange)="toggleSort($event)">
+    </p-checkbox>
+    <label for="sortAlphabetically">Sort A-Z</label>
+
+    <p-checkbox id="hideZeroValues"
+                [(ngModel)]="hideZeroValues"
+                [binary]="true"
+                (onChange)="toggleHideZero($event)">
+    </p-checkbox>
+    <label for="hideZeroValues"> V > 0</label>
+
+    <p-checkbox id="minValue"
+                [(ngModel)]="minValueFilterEnabled"
+                [binary]="true"
+                (onChange)="toggleMinValue($event)">
+    </p-checkbox>
+    <label for="minValue"> V > 0.1 %</label>
+  </div>
+}
+
+@if (checked) {
+  <app-bar-chart></app-bar-chart>
+} @else {
+  <app-pie-chart></app-pie-chart>
+}
